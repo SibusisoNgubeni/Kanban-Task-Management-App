@@ -40,6 +40,7 @@ const elements = {
   sideBarBottom: document.querySelector(".side-bar-bottom"),
   darkThemeIcon: document.getElementById("icon-dark"),
   lightThemeIcon: document.getElementById("icon-light"),
+  logoMobileImg: document.getElementById("logo"),
 };
 
 let activeBoard = "";
@@ -153,30 +154,28 @@ function addTaskToUI(task) {
 
   const taskElement = document.createElement("div");
   taskElement.className = "task-div";
-  taskElement.textContent = task.title; // Modify as needed
+  taskElement.textContent = task.title;
   taskElement.setAttribute("data-task-id", task.id);
 
   tasksContainer.appendChild(taskElement);
 }
 
 function setupEventListeners() {
-  // Cancel editing task event listener
   const cancelEditBtn = document.getElementById("cancel-edit-btn");
   cancelEditBtn.addEventListener("click", () =>
     toggleModal(false, elements.editTaskModal)
   );
 
-  // Cancel adding new task event listener
   const cancelAddTaskBtn = document.getElementById("cancel-add-task-btn");
   cancelAddTaskBtn.addEventListener("click", () => {
     toggleModal(false);
-    elements.filterDiv.style.display = "none"; // Also hide the filter overlay
+    elements.filterDiv.style.display = "none";
   });
 
   // Clicking outside the modal to close it
   elements.filterDiv.addEventListener("click", () => {
     toggleModal(false);
-    elements.filterDiv.style.display = "none"; // Also hide the filter overlay
+    elements.filterDiv.style.display = "none";
   });
 
   // Show sidebar event listener
@@ -241,7 +240,21 @@ function toggleSidebar(show) {
 }
 
 function toggleTheme() {
-  document.body.classList.toggle("light-theme");
+  const body = document.body;
+
+  body.classList.toggle("light-theme");
+  const isLightTheme = body.classList.contains("light-theme");
+  if (isLightTheme) {
+    logoMobileImg.src = "./assets/logo-light.svg";
+    localStorage.setItem("logoTheme", "./assets/logo-light.svg");
+    localStorage.setItem("light-theme", "disabled");
+  } else {
+    logoMobileImg.src = "./assets/logo-light.svg";
+    localStorage.setItem("logoTheme", "./assets/logo-light.svg");
+    localStorage.setItem("light-theme", "enabled");
+  }
+
+  elements.logoMobileImg.src = localStorage.getItem("logoTheme");
 }
 
 //OPENS THE EDIT TASK MODAL
@@ -291,10 +304,8 @@ function saveTaskChanges(taskId) {
     status: newStatus,
   };
 
-  // Update task using a hlper functoin
   patchTask(taskId, updatedTask);
 
-  // Close the modal and refresh the UI to reflect the changes
   toggleModal(false, elements.editTaskModal);
   refreshTasksUI();
 }
