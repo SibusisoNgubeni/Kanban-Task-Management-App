@@ -13,11 +13,14 @@ import { initialData } from "./initialData.js";
  * FIX BUGS!!!
  * **********************************************************************************************************************************************/
 
+const logoMobileImg = document.getElementById("logo");
 // Function checks if local storage already has data, if not it loads initialData to localStorage
 function initializeData() {
   if (!localStorage.getItem("tasks")) {
     localStorage.setItem("tasks", JSON.stringify(initialData));
     localStorage.setItem("showSideBar", "true");
+    localStorage.setItem("light-theme", "enabled");
+    localStorage.setItem("logoTheme", "./assets/logo-light.svg");
   } else {
     console.log("Data already exists in localStorage");
   }
@@ -40,7 +43,6 @@ const elements = {
   sideBarBottom: document.querySelector(".side-bar-bottom"),
   darkThemeIcon: document.getElementById("icon-dark"),
   lightThemeIcon: document.getElementById("icon-light"),
-  logoMobileImg: document.getElementById("logo"),
 };
 
 let activeBoard = "";
@@ -244,8 +246,9 @@ function toggleTheme() {
 
   body.classList.toggle("light-theme");
   const isLightTheme = body.classList.contains("light-theme");
+  console.log(isLightTheme);
   if (isLightTheme) {
-    logoMobileImg.src = "./assets/logo-light.svg";
+    document.getElementById("logo").src = "./assets/logo-light.svg";
     localStorage.setItem("logoTheme", "./assets/logo-light.svg");
     localStorage.setItem("light-theme", "disabled");
   } else {
@@ -254,7 +257,7 @@ function toggleTheme() {
     localStorage.setItem("light-theme", "enabled");
   }
 
-  elements.logoMobileImg.src = localStorage.getItem("logoTheme");
+  logoMobileImg.src = localStorage.getItem("logoTheme");
 }
 
 //OPENS THE EDIT TASK MODAL
