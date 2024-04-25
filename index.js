@@ -20,7 +20,7 @@ function initializeData() {
     localStorage.setItem("tasks", JSON.stringify(initialData));
     localStorage.setItem("showSideBar", "true");
     localStorage.setItem("light-theme", "enabled");
-    localStorage.setItem("logoTheme", "./assets/logo-light.svg");
+    localStorage.setItem("logoTheme", "./assets/logo-dark.svg");
   } else {
     console.log("Data already exists in localStorage");
   }
@@ -242,22 +242,37 @@ function toggleSidebar(show) {
 }
 
 function toggleTheme() {
-  const body = document.body;
-
-  body.classList.toggle("light-theme");
-  const isLightTheme = body.classList.contains("light-theme");
-  console.log(isLightTheme);
-  if (isLightTheme) {
-    document.getElementById("logo").src = "./assets/logo-light.svg";
+  // console.log(elements.themeSwitch)
+  if (localStorage.getItem("light-theme") == "enabled") {
+    document.body.classList.toggle("light-theme", false);
+    logoMobileImg.src = localStorage.getItem("logoTheme");
+    console.log("light");
     localStorage.setItem("logoTheme", "./assets/logo-light.svg");
     localStorage.setItem("light-theme", "disabled");
   } else {
-    logoMobileImg.src = "./assets/logo-light.svg";
-    localStorage.setItem("logoTheme", "./assets/logo-light.svg");
+    document.body.classList.toggle("light-theme", true);
+    logoMobileImg.src = localStorage.getItem("logoTheme");
+    console.log("dark");
+    localStorage.setItem("logoTheme", "./assets/logo-dark.svg");
     localStorage.setItem("light-theme", "enabled");
   }
 
-  logoMobileImg.src = localStorage.getItem("logoTheme");
+  // const body = document.body;
+
+  // body.classList.toggle("light-theme");
+  // const isLightTheme = body.classList.contains("light-theme");
+  // console.log(isLightTheme);
+  // if (isLightTheme) {
+  //   logoMobileImg.src = "./assets/logo-light.svg";
+  //   localStorage.setItem("logoTheme", "./assets/logo-light.svg");
+  //   localStorage.setItem("light-theme", "enabled");
+  // } else {
+  //   logoMobileImg.src = "./assets/logo-dark.svg";
+  //   localStorage.setItem("logoTheme", "./assets/logo-dark.svg");
+  //   localStorage.setItem("light-theme", "disabled");
+  // }
+
+  // logoMobileImg.src = localStorage.getItem("logoTheme");
 }
 
 //OPENS THE EDIT TASK MODAL
@@ -321,6 +336,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function init() {
   setupEventListeners();
+
+  if (localStorage.getItem("logoTheme") == "./assets/logo-dark.svg") {
+    logoMobileImg.src = "./assets/logo-light.svg";
+  }
   const showSidebar = localStorage.getItem("showSideBar") === "true";
   toggleSidebar(showSidebar);
   const isLightTheme = localStorage.getItem("light-theme") === "enabled";
