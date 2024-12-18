@@ -5,9 +5,7 @@
 
 The Agile Board project is a Kanban Task Management App that allows users to manage tasks, switch from dark mode to light mode, add and delete tasks, and edits task status from todo, doing and done.
 
-# Features
 
-The Agile Board project includes a variety of functionalities:
 
 # Task Interaction and Detail Management
 
