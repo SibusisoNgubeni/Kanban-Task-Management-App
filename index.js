@@ -204,7 +204,9 @@ function setupEventListeners() {
 function toggleModal(show, modal = elements.modalWindow) {
   modal.style.display = show ? "block" : "none";
 }
+const toggleDiv = document.querySelector(".toggle-div");
 
+toggleDiv.classList.add("custom-toggle-style");
 /*************************************************************************************************************************************************
  * COMPLETE FUNCTION CODE
  * **********************************************************************************************************************************************/
@@ -240,8 +242,13 @@ function toggleSidebar(show) {
     elements.showSidebar.style.display = "none"; // Show the sidebar
   }
 }
+//styling for the side bar 
+document.getElementById("boards-nav-links-div").style.marginTop = "50px";
+document.getElementById("boards-nav-links-div").style.marginBottom = "300px";
 
 function toggleTheme() {
+  const body =document.body;
+  body.classList.toggle("light-theme");
   // console.log(elements.themeSwitch)
   if (localStorage.getItem("light-theme") == "enabled") {
     document.body.classList.toggle("light-theme", false);
