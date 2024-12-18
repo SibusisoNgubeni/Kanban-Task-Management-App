@@ -1,11 +1,11 @@
-# JSL11 Agile Board - Kanban Task Management App
+# Agile Board - Kanban Task Management App
 Loom Video link
 ===============================================
 https://www.loom.com/share/4637675211d44c29a748d5eaacb2cc65?sid=bca91880-3982-4d3a-bcbf-6c7f6bf214ff
 
 # Project Overview
 
-The JSL11 Agile Board project is a Kanban Task Management App that allows users to manage tasks, switch from dark mode to light mode, add and delete tasks, and edits task status from todo, doing and done.
+The Agile Board project is a Kanban Task Management App that allows users to manage tasks, switch from dark mode to light mode, add and delete tasks, and edits task status from todo, doing and done.
 
 # Features
 
